@@ -3,13 +3,16 @@ import React, { useState, useEffect } from 'react';
 export default function Timer() {
   const [time, setTime] = useState(0);
   
-useEffect(() => {
-    setInterval(
-        () => {
-            setTime(x => x + 1 )
-        }
-        ,1000)
-})
+  useEffect(() => {
+      const intervalId = ()=>{
+          setInterval(
+            setTime(x=>x+1)  
+            ,1000)
+      }
+      return () => {
+          clearInterval(intervalId)
+      }
+  }, [])
 
   return (
     <>
